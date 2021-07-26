@@ -1,9 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenCvSharp4" Version="4.5.2.20210404" />
+    <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.5.2.20210404" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Yolov5Net.Scorer\Yolov5Net.Scorer.csproj" />

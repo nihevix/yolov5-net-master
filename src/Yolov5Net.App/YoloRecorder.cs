@@ -1,30 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using Yolov5Net.Scorer;
 using Yolov5Net.Scorer.Models;
 using OpenCvSharp;
-using OpenCvSharp.Extensions;
-using System.Threading.Tasks;
+
 
 namespace Yolov5Net.App
 {
-    class StartRecords
+    public class YoloRecorder
     {
-        public Mat streamMat;
+
         public Bitmap bitmap;
         YoloScorer<YoloCocoModel> scorer;
-        public  StartRecords(Mat stream)
+        public  YoloRecorder(Mat stream)
         {
-            this.streamMat =  stream;
-          scorer = new YoloScorer<YoloCocoModel>();
+            scorer = new YoloScorer<YoloCocoModel>();
         }
-         public async void Start(Mat stream)
+
+        public async void Start(Mat stream)
         {
-            this.streamMat = stream;
-            Image image = MatToBitmap(streamMat);
+
+            Image image = MatToBitmap(stream);
 
             List<YoloPrediction> predictions = scorer.Predict(image);
 
@@ -40,10 +37,11 @@ namespace Yolov5Net.App
                 var (x, y) = (prediction.Rectangle.X - 3, prediction.Rectangle.Y - 23);
 
                 graphics.DrawString($"{prediction.Label.Name} ({score})",
-                    new Font("Calibri", 16, GraphicsUnit.Pixel), new SolidBrush(prediction.Label.Color),
+                    new Font("Consolas", 16, GraphicsUnit.Pixel), new SolidBrush(prediction.Label.Color),
                     new PointF(x, y));
             }
         }
+
         public static Bitmap MatToBitmap(Mat image)
         {
             try
@@ -52,7 +50,8 @@ namespace Yolov5Net.App
             }
             catch
             {
-                return OpenCvSharp.Extensions.BitmapConverter.ToBitmap(new Mat());
+                image = new Mat();
+                return OpenCvSharp.Extensions.BitmapConverter.ToBitmap(image);
             }
         } // end of MatToBitmap function
     }
