@@ -26,18 +26,21 @@ namespace Yolov5Net.Scorer.Models
         public override float MulConfidence { get; } = 0.25f;
         public override float Overlap { get; } = 0.45f;
 
-        public override string Weights { get; } = "assets/weights/yolov5s.onnx";
-
+        //public override string Weights { get; } = "assets/Weights/yolov5s.onnx";
+        public override string Weights { get; } = @"C:\Users\Utente\Desktop\Tesi\yolov5-net-master\src\Yolov5Net.App\Assets\Weights\yolov5s_full_layer.onnx";
+        //public override string Weights { get; } = "assets/Weights/emotion-ferplus-8.onnx";
         public override string[] OutputNames { get; } = new[] { "561" };
 
         public override bool UseDetect { get; } = true;
 
         public YoloCocoModel()
         {
+            //#if TEST
             Labels = new List<YoloLabel>()
             {
                 new YoloLabel { Id = 1, Name = "person" },
-                new YoloLabel { Id = 2, Name = "bicycle" },
+#if TEST
+new YoloLabel { Id = 2, Name = "bicycle" },
                 new YoloLabel { Id = 3, Name = "car" },
                 new YoloLabel { Id = 4, Name = "motorcycle" },
                 new YoloLabel { Id = 5, Name = "airplane" },
@@ -115,8 +118,10 @@ namespace Yolov5Net.Scorer.Models
                 new YoloLabel { Id = 77, Name = "scissors" },
                 new YoloLabel { Id = 78, Name = "teddy bear" },
                 new YoloLabel { Id = 79, Name = "hair drier" },
-                new YoloLabel { Id = 80, Name = "toothbrush" }
-            };
-        }
+               new YoloLabel { Id = 80, Name = "toothbrush" }
+        #endif 
+               };
+
+            }
     }
 }

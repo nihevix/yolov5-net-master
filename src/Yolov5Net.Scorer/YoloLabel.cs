@@ -14,7 +14,7 @@ namespace Yolov5Net.Scorer
 
         public YoloLabel()
         {
-            Color = Color.Yellow;
+            Color = Color.Red;
         }
     }
 }

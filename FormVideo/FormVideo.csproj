@@ -18,4 +18,8 @@
     <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\src\Yolov5Net.App\Yolov5Net.App.csproj" />
+  </ItemGroup>
+
 </Project>
