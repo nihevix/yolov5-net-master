@@ -146,25 +146,25 @@ namespace Yolov5Net.Scorer
 
             for (int i = 0; i < output.Length / _model.Dimensions; i++) // iterate tensor
             {
-                if (output[0, 0, 4] <= _model.Confidence) continue;
+                if (output[0, i, 4] <= _model.Confidence) continue;
                 Console.WriteLine(output.Dimensions.ToString());
                 for (int j = 5; j < _model.Dimensions; j++) // compute mul conf
                 {
-                    output[0, 0, j] = output[0, 0, j] * output[0, 0, 4]; // conf = obj_conf * cls_conf
+                    output[0,i, j] = output[0, i, j] * output[0, i, 4]; // conf = obj_conf * cls_conf
                 }
 
                 for (int k = 5; k < _model.Dimensions; k++)
                 {
-                    if (output[0, 0, k] <= _model.MulConfidence) continue;
+                    if (output[0, i, k] <= _model.MulConfidence) continue;
 
-                    var xMin = (output[0, 0, 0] - output[0, 0, 2] / 2) / xGain; // top left x
-                    var yMin = (output[0, 0, 1] - output[0, 0, 3] / 2) / yGain; // top left y
-                    var xMax = (output[0, 0, 0] + output[0, 0, 2] / 2) / xGain; // bottom right x
-                    var yMax = (output[0, 0, 1] + output[0, 0, 3] / 2) / yGain; // bottom right y
+                    var xMin = (output[0, i, 0] - output[0, i, 2] / 2) / xGain; // top left x
+                    var yMin = (output[0, i, 1] - output[0, i, 3] / 2) / yGain; // top left y
+                    var xMax = (output[0, i, 0] + output[0, i, 2] / 2) / xGain; // bottom right x
+                    var yMax = (output[0, i, 1] + output[0, i, 3] / 2) / yGain; // bottom right y
 
                     YoloLabel label = _model.Labels[k - 5];
 
-                    var prediction = new YoloPrediction(label, output[0, 0, k])
+                    var prediction = new YoloPrediction(label, output[0, i, k])
                     {
                         Rectangle = new RectangleF(xMin, yMin, xMax - xMin, yMax - yMin)
                     };

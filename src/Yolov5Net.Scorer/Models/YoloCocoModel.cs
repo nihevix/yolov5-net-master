@@ -21,16 +21,16 @@ namespace Yolov5Net.Scorer.Models
 
         public override int[] Shapes { get; } = new int[] { 80, 40, 20 };
 
-        public override float Confidence { get; } = 0.10f; //old 0.20f
+        public override float Confidence { get; } = 0.20f; //old 0.20f
         public override float MulConfidence { get; } = 0.25f;
         public override float Overlap { get; } = 0.45f;
-        //public override int Dimensions { get; } = 85;
-        public override int Dimensions { get; } = 8;
+        public override int Dimensions { get; } = 85;
+        //public override int Dimensions { get; } = 8;
 
-         public override string Weights { get; } = "assets/Weights/best.onnx";
-        //public override string Weights { get; } = "assets/Weights/yolov5s.onnx";
-        //public override string[] OutputNames { get; } = new[] { "561" };
-        public override string[] OutputNames { get; } = new[] { "465" };
+        // public override string Weights { get; } = "assets/Weights/best.onnx";
+        public override string Weights { get; } = "assets/Weights/yolov5s.onnx";
+        public override string[] OutputNames { get; } = new[] { "561" };
+        //public override string[] OutputNames { get; } = new[] { "465" };
 
 
         public override bool UseDetect { get; } = true;
@@ -40,9 +40,9 @@ namespace Yolov5Net.Scorer.Models
             //#if TEST
             Labels = new List<YoloLabel>()
             {
-                 new YoloLabel { Id = 1, Name = "mask_weared_incorrect" },
+                /* new YoloLabel { Id = 1, Name = "mask_weared_incorrect" },
                 new YoloLabel { Id = 2, Name = "with_mask" },
-                new YoloLabel { Id = 3, Name = "without_mask" }/*
+                new YoloLabel { Id = 3, Name = "without_mask" }*/
                 new YoloLabel { Id = 1, Name = "person" },
                 new YoloLabel { Id = 2, Name = "bicycle" },
                 new YoloLabel { Id = 3, Name = "car" },
@@ -122,7 +122,7 @@ namespace Yolov5Net.Scorer.Models
                 new YoloLabel { Id = 77, Name = "scissors" },
                 new YoloLabel { Id = 78, Name = "teddy bear" },
                 new YoloLabel { Id = 79, Name = "hair drier" },
-               new YoloLabel { Id = 80, Name = "toothbrush" }*/
+               new YoloLabel { Id = 80, Name = "toothbrush" }
                };
 
             }
