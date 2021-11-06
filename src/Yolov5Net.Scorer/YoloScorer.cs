@@ -126,7 +126,10 @@ namespace Yolov5Net.Scorer
 
             foreach (var item in _model.OutputNames) // add outputs for processing
             {
-                output.Add(result.First(x => x.Name == item).Value as DenseTensor<float>);
+
+                 output.Add(result.First(x => x.Name == item).Value as DenseTensor<float>); 
+
+
             };
 
             return output.ToArray();
@@ -144,7 +147,7 @@ namespace Yolov5Net.Scorer
             for (int i = 0; i < output.Length / _model.Dimensions; i++) // iterate tensor
             {
                 if (output[0, i, 4] <= _model.Confidence) continue;
-
+                Console.WriteLine(output.Dimensions.ToString());
                 for (int j = 5; j < _model.Dimensions; j++) // compute mul conf
                 {
                     output[0, i, j] = output[0, i, j] * output[0, i, 4]; // conf = obj_conf * cls_conf
@@ -242,7 +245,9 @@ namespace Yolov5Net.Scorer
         /// </summary>
         private List<YoloPrediction> ParseOutput(DenseTensor<float>[] output, Image image)
         {
-            return _model.UseDetect ? ParseDetect(output[0], image) : ParseSigmoid(output, image);
+            return _model.UseDetect ? ParseDetect(output[0], image) : ParseSigmoid(output, image)  ; 
+
+            
         }
 
         /// <summary>
