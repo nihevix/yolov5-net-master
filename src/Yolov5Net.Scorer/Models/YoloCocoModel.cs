@@ -25,11 +25,14 @@ namespace Yolov5Net.Scorer.Models
         public override float MulConfidence { get; } = 0.25f;
         public override float Overlap { get; } = 0.45f;
         public override int Dimensions { get; } = 85;
-        //public override int Dimensions { get; } = 8;
 
-        // public override string Weights { get; } = "assets/Weights/best.onnx";
+
         public override string Weights { get; } = "assets/Weights/yolov5s.onnx";
         public override string[] OutputNames { get; } = new[] { "561" };
+
+        // parametri da cambiare
+
+        // public override string Weights { get; } = "assets/Weights/best.onnx";
         //public override string[] OutputNames { get; } = new[] { "465" };
 
 
@@ -37,7 +40,7 @@ namespace Yolov5Net.Scorer.Models
 
         public YoloCocoModel()
         {
-            //#if TEST
+
             Labels = new List<YoloLabel>()
             {
                 /* new YoloLabel { Id = 1, Name = "mask_weared_incorrect" },
